@@ -1,18 +1,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:background="#000000" >
+    android:orientation="vertical" >
 
-    <TableLayout 
+    <TableLayout
         android:id="@+id/game_board"
-        android:layout_width="319dp"
+        android:layout_width="match_parent"
         android:layout_height="304dp"
-        android:layout_weight="0.00" >
+        android:layout_weight="0.50" >
 
-        <TableRow 
+        <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,8 +21,8 @@
             <Button
                 android:id="@+id/Button0"
                 android:layout_width="100dp"
-                android:layout_height="100dp" 
-                android:onClick="setText"/>
+                android:layout_height="100dp"
+                android:onClick="setText" />
 
             <Button
                 android:id="@+id/Button1"
