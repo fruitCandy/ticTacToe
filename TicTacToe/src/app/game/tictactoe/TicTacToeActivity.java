@@ -43,7 +43,7 @@ public class TicTacToeActivity extends Activity {
         } else if (game.getGameStatus() == 0) {
             turnBtn.setText("Game Ended with a tie");
         } else {
-            turnBtn.setText("Player " + currentPlayer + "'s turn");
+            turnBtn.setText("Player " +  game.getPlayer() + "'s turn");
         }
     }
     
