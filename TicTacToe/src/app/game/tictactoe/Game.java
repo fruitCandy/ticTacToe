@@ -1,7 +1,5 @@
 package app.game.tictactoe;
 
-import java.util.Scanner;
-
 
 public class Game {
 	
@@ -98,5 +96,15 @@ public class Game {
 	
 	public int getPlayer() {
 		return player;
+	}
+	
+	public int getGameStatus() {
+		if (gameEnd && !isTie) {
+			return 1; //current player won
+		} else if (gameEnd && isTie){
+			return 0; //tie
+		} else {
+			return -1;
+		}
 	}
 }

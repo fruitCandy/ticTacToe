@@ -19,20 +19,25 @@
             android:gravity="center_horizontal" >
 
             <Button
-                android:id="@+id/Button0"
+                android:id="@+id/button_0"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:onClick="setText" />
+                android:onClick="setText" 
+                android:tag="0_0"/>
 
             <Button
-                android:id="@+id/Button1"
+                android:id="@+id/button_1"
                 android:layout_width="100dp"
-                android:layout_height="100dp" />
+                android:layout_height="100dp"
+                android:onClick="setText"  
+                android:tag="0_1"/>
 
             <Button
-                android:id="@+id/Button2"
+                android:id="@+id/button_2"
                 android:layout_width="100dp"
-                android:layout_height="100dp" />
+                android:layout_height="100dp" 
+                android:onClick="setText" 
+                android:tag="0_2"/>
         </TableRow>
 
         <TableRow
@@ -42,22 +47,25 @@
             android:gravity="center_horizontal" >
 
             <Button
-                android:id="@+id/Button3"
+                android:id="@+id/button_3"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:text="" />
+                android:onClick="setText" 
+                android:tag="1_0"/>
 
             <Button
-                android:id="@+id/Button4"
+                android:id="@+id/button_4"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:text="" />
+                android:tag="1_1"
+                android:onClick="setText"  />
 
             <Button
-                android:id="@+id/Button5"
+                android:id="@+id/button_5"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:text="" />
+                android:tag="1_2"
+                android:onClick="setText" />
         </TableRow>
 
         <TableRow
@@ -67,23 +75,40 @@
             android:gravity="center_horizontal" >
 
             <Button
-                android:id="@+id/Button6"
+                android:id="@+id/button_6"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:text="" />
+                android:tag="2_0"
+                android:onClick="setText" />
 
             <Button
-                android:id="@+id/Button7"
+                android:id="@+id/button_7"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:text="" />
+                android:tag="2_1"
+                android:onClick="setText" />
 
             <Button
-                android:id="@+id/Button8"
+                android:id="@+id/button_8"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:text="" />
+                android:enabled="true"
+                android:onClick="setText"
+                android:tag="2_2" />
+
         </TableRow>
+
     </TableLayout>
+
+    <Button
+        android:id="@+id/player"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="169dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.50"
+        android:clickable="false"
+        android:enabled="false"
+        android:text="Player 1"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>
