@@ -7,34 +7,13 @@ public class Game {
 	protected int player = 1;
 	protected boolean gameEnd = false;
 	protected boolean isTie = false;
+	protected boolean singlePlayer = false;
 	
 	protected int[][] map = null;
 	protected int spaces = 9;
 	
 	public void init() {
 		map = new int[3][3];
-	}
-	
-	public void start() {
-		//get user input for a
-		int player = 1;
-		int x = 0;
-		int y = 0;
-		while (!gameEnd) {
-			// Get user request, retry when invalid moves
-			System.out.println("Player" + player);
-			showMap();
-			System.out.println("Enter x, please pick a number between 1 and 3. (-1 to exit)");
-			System.out.println("Enter y, please pick a number between 1 and 3. (-1 to exit)");
-			if (!mark(x, y)) {
-				System.out.println("The spot you picked has already been taken. Please pick another one.");
-				continue;
-			}
-		}
-		if (isTie) {
-			System.out.println("Nobody is the winner, it's a tie.");
-			return;
-		}
 	}
 	
 	public boolean mark(int x, int y) {
@@ -82,12 +61,10 @@ public class Game {
 		return false;
 	}
 	
-	public void showMap(){
-		System.out.println(map[0][0] + "|" + map[1][0] + "|" + map[2][0]);
-		System.out.println("-----");
-		System.out.println(map[0][1] + "|" + map[1][1] + "|" + map[2][1]);
-		System.out.println("-----");
-		System.out.println(map[0][2] + "|" + map[1][2] + "|" + map[2][2]);
+	public void computerMove() {
+		if (!singlePlayer) {
+			return;
+		}
 	}
 	
 	public int[][] getMap() {
@@ -96,6 +73,14 @@ public class Game {
 	
 	public int getPlayer() {
 		return player;
+	}
+	
+	public void vsComputer() {
+		singlePlayer = true;
+	}
+	
+	public boolean getSinglePlayer() {
+		return singlePlayer;
 	}
 	
 	public int getGameStatus() {
