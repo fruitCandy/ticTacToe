@@ -61,10 +61,29 @@ public class Game {
 		return false;
 	}
 	
-	public void computerMove() {
+	// xy[0] contains x, xy[1] contains y
+	public int[] computerMove() {
+		int[] xy = new int[2];
 		if (!singlePlayer) {
-			return;
+			return null;
 		}
+		
+		
+		//
+		if (map[1][1] != 0) {
+			if (mark(1, 1)) {
+				xy[0] = 1;
+				xy[1] = 1;
+			}
+		}
+		
+		return xy;
+	}
+	
+	protected int[] calculateMoves() {
+		int[] xy = null;
+		
+		return xy;
 	}
 	
 	public int[][] getMap() {
@@ -77,10 +96,6 @@ public class Game {
 	
 	public void vsComputer() {
 		singlePlayer = true;
-	}
-	
-	public boolean getSinglePlayer() {
-		return singlePlayer;
 	}
 	
 	public int getGameStatus() {
