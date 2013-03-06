@@ -14,6 +14,10 @@ public class Game {
 	
 	public void init() {
 		map = new int[3][3];
+		player = 1;
+		gameEnd = false;
+		isTie = false;
+		spaces = 9;
 	}
 	
 	public boolean mark(int x, int y) {
@@ -63,7 +67,7 @@ public class Game {
 	
 	// xy[0] contains x, xy[1] contains y
 	public int[] computerMove() {
-		int[] xy = new int[2];
+		int[] xy = {-1, -1};
 		if (!singlePlayer) {
 			return null;
 		}
