@@ -2,7 +2,6 @@ package app.game.tictactoe;
 
 
 import java.util.ArrayList;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +14,7 @@ public class TicTacToeActivity extends Activity {
 	private Button turnBtn = null;
 	private ArrayList<Button> buttons = new ArrayList<Button>();
 	private Game game = new Game();
+	private Boolean isSinglerPlayer = false;
 	
 	private void getAllButtons() {
 		TableLayout view = (TableLayout) this.findViewById(R.id.game_board);
@@ -39,10 +39,15 @@ public class TicTacToeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tic_tac_toe);
 		
+		isSinglerPlayer = getIntent().getStringExtra(MainActivity.GAME_MODE).equals("1p");	
 		game.init();
 		getAllButtons();	
 		turnBtn = (Button) this.findViewById(R.id.player);
 		turnBtn.setText("Player 1's turn");
+		
+		if (isSinglerPlayer) {
+			game.vsComputer();
+		}		
 	}
 
 	@Override
@@ -58,8 +63,20 @@ public class TicTacToeActivity extends Activity {
     	int currentPlayer = game.getPlayer();
     	
     	b.setEnabled(false);
-        b.setText(currentPlayer == 1 ? "x" : "O");
-        game.mark(Integer.parseInt(tag[0]),Integer.parseInt(tag[1]));
+        game.mark(Integer.parseInt(tag[0]), Integer.parseInt(tag[1]));
+        
+        if (isSinglerPlayer) {
+        	b.setText("x");
+        	  
+        	int [] pcMovement = game.computerMove();
+        	int btIndex = pcMovement[0] + pcMovement[1] * 3;	          
+        	Button pcMovementBtn = buttons.get(btIndex);
+        	pcMovementBtn.setText("0");
+        	pcMovementBtn.setEnabled(false);
+
+        } else {
+            b.setText(currentPlayer == 1 ? "x" : "O");
+        }
         
         if (game.getGameStatus() == 1) {
             turnBtn.setText("Player " + currentPlayer + "won!");

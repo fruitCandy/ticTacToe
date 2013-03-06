@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.View;
 
 public class MainActivity extends Activity {
+	public final static String GAME_MODE = "app.game.tictactoe.GAME_MODE";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,6 +25,7 @@ public class MainActivity extends Activity {
 
 	public void start(View view) {
 		Intent intent = new Intent(this, TicTacToeActivity.class);
+		intent.putExtra(GAME_MODE, view.getTag().toString());
     	startActivity(intent);
 	}
 }

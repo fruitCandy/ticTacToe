@@ -2,15 +2,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
     android:gravity="center"
+    android:background="#000000"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/Button0"
-        android:layout_width="wrap_content"
-        android:layout_height="63dp"
-        android:onClick="start"
-        android:text="@string/start_game" />
+    <LinearLayout 
+	    android:id="@+id/LinearLayout02" 
+	    android:layout_height="wrap_content" 
+	    android:layout_width="fill_parent" 
+	    android:gravity="center">
 
+	    	<Button
+	    	    android:id="@+id/p1"
+	    	    android:layout_width="120dp"
+	    	    android:layout_height="40dp"
+	    	    android:layout_marginRight="10dp"
+	    	    android:background="@drawable/rounded_corner"
+	    	    android:onClick="start"
+	    	    android:text="@string/one_player" 
+	    	    android:tag="1p"/>
+	    	
+	        <Button
+	            android:id="@+id/p2"
+	            android:layout_width="120dp"
+	            android:layout_height="40dp"
+	            android:layout_marginLeft="10dp"
+	            android:background="@drawable/rounded_corner"
+	            android:onClick="start"
+	            android:text="@string/two_players"
+	            android:tag="2p" />
+    
+	</LinearLayout>
 </LinearLayout>
