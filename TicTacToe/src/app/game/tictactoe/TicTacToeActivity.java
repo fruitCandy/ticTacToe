@@ -4,6 +4,9 @@ package app.game.tictactoe;
 import java.util.ArrayList;
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Handler.Callback;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +18,25 @@ public class TicTacToeActivity extends Activity {
 	private ArrayList<Button> buttons = new ArrayList<Button>();
 	private Game game = new Game();
 	private Boolean isSinglerPlayer = false;
+	private Handler mHandler = new Handler(new MyHandlerCallback());
+    private static final int MSG_COMPUTER_TURN = 1;
+    private static final long COMPUTER_DELAY_MS = 500;
+	
+	private class MyHandlerCallback implements Callback {
+        public boolean handleMessage(Message msg) {
+            if (msg.what == MSG_COMPUTER_TURN) {
+            	int [] pcMovement = game.computerMove();	          
+            	Button pcMovementBtn = buttons.get(pcMovement[0] + pcMovement[1] * 3);
+            	
+            	pcMovementBtn.setText("0");
+            	pcMovementBtn.setEnabled(false);          
+            	setGameStatus("Your turn", "Computer won!");
+            	
+            	return true;
+            }
+            return false;
+        }
+    }
 	
 	private void getAllButtons() {
 		TableLayout view = (TableLayout) this.findViewById(R.id.game_board);
@@ -60,32 +82,39 @@ public class TicTacToeActivity extends Activity {
     public void setText(View view) {
     	Button b = (Button) view;
     	String[] tag = b.getTag().toString().split("_");
-    	int currentPlayer = game.getPlayer();
+    	int thePlayerMadeTheMove = game.getPlayer();
     	
     	b.setEnabled(false);
         game.mark(Integer.parseInt(tag[0]), Integer.parseInt(tag[1]));
         
         if (isSinglerPlayer) {
-        	b.setText("x");
-        	  
-        	int [] pcMovement = game.computerMove();
-        	int btIndex = pcMovement[0] + pcMovement[1] * 3;	          
-        	Button pcMovementBtn = buttons.get(btIndex);
-        	pcMovementBtn.setText("0");
-        	pcMovementBtn.setEnabled(false);
-
+        	b.setText("X");	 
+        	
+        	if (game.getGameStatus() == -1) {
+        		turnBtn.setText("Computer's turn");
+    			mHandler.sendEmptyMessageDelayed(MSG_COMPUTER_TURN, COMPUTER_DELAY_MS);
+        	} else {
+        		setGameStatus("", "You won!");
+        	}
         } else {
-            b.setText(currentPlayer == 1 ? "x" : "O");
-        }
-        
-        if (game.getGameStatus() == 1) {
-            turnBtn.setText("Player " + currentPlayer + "won!");
-            disableButtons();
-        } else if (game.getGameStatus() == 0) {
-            turnBtn.setText("Game Ended with a tie");
-            disableButtons();
-        } else {
-            turnBtn.setText("Player " +  game.getPlayer() + "'s turn");
-        }
-    }   
+        	b.setText(thePlayerMadeTheMove == 1 ? "X" : "O");  	 
+       	 	setGameStatus("Player " +  game.getPlayer() + "'s turn", "Player " +  thePlayerMadeTheMove + "won!");
+        }      
+    } 
+    
+    public void setGameStatus(String turnMsg, String wonMsg) {
+    	switch(game.getGameStatus()){
+			case -1: 
+				turnBtn.setText(turnMsg);
+				break;
+			case 1: 
+				turnBtn.setText(wonMsg);
+				disableButtons();
+				break;
+			case 0:
+				turnBtn.setText("Game Ended with a tie");
+				disableButtons();
+				break;
+    	}
+    } 
 }
