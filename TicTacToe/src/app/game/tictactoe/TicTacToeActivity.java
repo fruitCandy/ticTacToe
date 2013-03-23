@@ -26,7 +26,7 @@ public class TicTacToeActivity extends Activity {
         public boolean handleMessage(Message msg) {
             if (msg.what == MSG_COMPUTER_TURN) {
             	int [] pcMovement = game.computerMove();	          
-            	Button pcMovementBtn = buttons.get(pcMovement[0] + pcMovement[1] * 3);
+            	Button pcMovementBtn = buttons.get(pcMovement[1] + pcMovement[0] * 3);
             	
             	pcMovementBtn.setText("0");
             	pcMovementBtn.setEnabled(false);          
