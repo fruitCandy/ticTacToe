@@ -138,14 +138,21 @@ public class Game {
 	
 	// if a winning move in the line, return the position
 	protected int checkWinningLine(int[] line) {
-		if (line[0] != line[1] && line[1] != line[2] && line[0] != line[2]) {
-			if (line[0] == 0) {
-				return 0;
-			} else if (line[1] == 0) {
-				return 1;
-			} else if (line[2] == 0) {
-				return 2;
-			}
+		int zero = 0;
+		if (line[0] == 0) zero++;
+		if (line[1] == 0) zero++;
+		if (line[2] == 0) zero++;
+		if (zero != 1) {
+			return -1;
+		}
+		if (line[0] == line[1]) {
+			return 2;
+		}
+		if (line[0] == line[2]) {
+			return 1;
+		}
+		if (line[1] == line[2]) {
+			return 0;
 		}
 		return -1;
 	}
